@@ -1,6 +1,8 @@
 const DEFAULT_GRID_SIZE = 16;
 
 const sketch = document.querySelector('#sketch');
+const container = document.querySelector('.container');
+const body = document.querySelector('body');
 
 
 function createCell() {
@@ -46,6 +48,10 @@ function createRow(size, id) {
 
 
 function createGrid(size = DEFAULT_GRID_SIZE) {
+
+    while(sketch.firstChild) {
+        sketch.removeChild(sketch.lastChild);
+    }
     
     for (let row = 0; row < size; row++) {
         const newRow = createRow(size, row);
@@ -53,5 +59,36 @@ function createGrid(size = DEFAULT_GRID_SIZE) {
     }
     
 }
+
+
+function promptForGridSize() {
+    const size = +prompt('Select a new grid size [8 - 120]');
+    return size;
+}
+
+
+function onClickNewGrid() {
+    const size = promptForGridSize();
+
+    if (size == null || isNaN(size)) {
+        alert('Must provide valid number for size [8 - 120]');
+        return;
+    }
+
+    if (size < 8 || 120 < size) {
+        // square brackets inclusive, parentheses exclusive
+        alert('Must provide size between [8 - 120] (inclusive)');
+        return;
+    }
+
+    createGrid(size);
+}
+
+const resetButton = document.createElement('button');
+
+resetButton.innerText = 'Shake';
+resetButton.addEventListener('click', onClickNewGrid);
+
+body.insertBefore(resetButton, container);
 
 createGrid();
