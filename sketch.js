@@ -65,7 +65,7 @@ function createColumn(id) {
     const column = document.createElement('div');
 
     column.classList.add('column');
-    column.id = id;
+    column.id = `c-${id}`;
 
     const cell = createCell()
 
@@ -79,11 +79,11 @@ function createRow(size, id) {
     const row = document.createElement('div');
     
     row.classList.add('row');
-    row.id = id;
+    row.id = `r-${id}`;
 
     for (let column = 0; column < size; column++) {
-        const cell = createColumn(column);
-        row.appendChild(cell);
+        const columnElement = createColumn(`${id}:${column}`);
+        row.appendChild(columnElement);
     }
 
     return row;
