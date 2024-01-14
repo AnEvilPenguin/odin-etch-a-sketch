@@ -10,7 +10,8 @@
 }
 
 #sketch {
-  width: 60vw;
+  --side: min(75vw, 75vh);
+  width: var(--side);
   aspect-ratio: 1;
   flex-shrink: 0;
   display: flex;
