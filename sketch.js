@@ -1,8 +1,8 @@
 const DEFAULT_GRID_SIZE = 16;
 
+
 const sketch = document.querySelector('#sketch');
-const container = document.querySelector('.container');
-const body = document.querySelector('body');
+const resetButton = document.querySelector('.reset-button');
 
 
 function createCell() {
@@ -84,11 +84,8 @@ function onClickNewGrid() {
     createGrid(size);
 }
 
-const resetButton = document.createElement('button');
 
-resetButton.innerText = 'Shake';
 resetButton.addEventListener('click', onClickNewGrid);
 
-body.insertBefore(resetButton, container);
 
 createGrid();
