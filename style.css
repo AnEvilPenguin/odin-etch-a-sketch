@@ -1,0 +1,33 @@
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+#sketch {
+  width: 900px;
+  height: 900px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  flex-grow: 1;
+  display: flex;
+}
+
+.column {
+  flex-grow: 1;
+  display: flex;
+}
+
+.cell {
+  flex-grow: 1;
+  border: 1px solid black;
+}
