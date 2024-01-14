@@ -1,17 +1,28 @@
 const DEFAULT_GRID_SIZE = 16;
+const OPACITY_INCREASE_RATE = 10;
 
 
 const sketch = document.querySelector('#sketch');
 const resetButton = document.querySelector('.reset-button');
+const opacityOption = document.querySelector('#opacity');
+
+
+let opacity = false;
 
 
 function createCell() {
     const cell = document.createElement('div');
     cell.classList.add('cell');
 
-    // inline arrow function as we're going to make use of closure later
+    let myOpacity = 0;
+
     const onHover = () => {
         cell.style['background-color'] = 'black'
+
+        if (opacity && myOpacity < 100) {
+            myOpacity += OPACITY_INCREASE_RATE;
+            cell.style['opacity'] = myOpacity + '%';
+        }
     };
     cell.addEventListener('mouseover', onHover);
 
@@ -86,6 +97,11 @@ function onClickNewGrid() {
 
 
 resetButton.addEventListener('click', onClickNewGrid);
+
+
+opacityOption.addEventListener('click', () => {
+    opacity = opacityOption.checked;
+});
 
 
 createGrid();
