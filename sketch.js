@@ -8,6 +8,7 @@ const opacityOption = document.querySelector('#opacity');
 const randomColorOption = document.querySelector('#randomColor');
 
 
+/** Options the user can set to modify behavior */
 const options = {
     opacity: false,
     randomColor: false
@@ -26,6 +27,13 @@ function getRandomInt(max) {
 }
 
 
+/**
+ * Generates a div to be used as a part of the etch a sketch.
+ * The smallest functional unit of our sketching area. This div handles
+ *     color.
+ * 
+ * @returns A cell element
+ */
 function createCell() {
     const cell = document.createElement('div');
     cell.classList.add('cell');
@@ -61,6 +69,14 @@ function createCell() {
     return cell;
 }
 
+
+/**
+ * Generates a div that acts as a column in our sketching grid.
+ * Contains a cell.
+ * 
+ * @param {String} id Unique identifier to be used as HTML id
+ * @returns A div to be used as a column
+ */
 function createColumn(id) {
     const column = document.createElement('div');
 
@@ -75,6 +91,14 @@ function createColumn(id) {
 }
 
 
+/**
+ * Generates a div that acts as a row in our sketching grid.
+ * Has a number of columns generated inside of it.
+ * 
+ * @param {Number} size The number of columns to contain
+ * @param {string} id Unique identifier to be used as HTML id
+ * @returns A div to be used as a row
+ */
 function createRow(size, id) {
     const row = document.createElement('div');
     
@@ -90,6 +114,11 @@ function createRow(size, id) {
 }
 
 
+/**
+ * Generates a new etch a sketch grid.
+ * 
+ * @param {?Number} size The size of the grid to generate.
+ */
 function createGrid(size = DEFAULT_GRID_SIZE) {
 
     while(sketch.firstChild) {
@@ -104,12 +133,20 @@ function createGrid(size = DEFAULT_GRID_SIZE) {
 }
 
 
+/**
+ * Prompts the user for a grid size.
+ * 
+ * @returns The size of the grid a user has selected or NaN.
+ */
 function promptForGridSize() {
     const size = +prompt('Select a new grid size [8 - 120]');
     return size;
 }
 
 
+/**
+ * Handles an onClickEvent to generate a new etch a sketch grid
+ */
 function onClickNewGrid() {
     const size = promptForGridSize();
 
@@ -131,6 +168,13 @@ function onClickNewGrid() {
 resetButton.addEventListener('click', onClickNewGrid);
 
 
+/**
+ * Takes an input element, and a variable name. Sets the appropriate
+ *     user option.
+ * 
+ * @param {String} variable 
+ * @param {*} element 
+ */
 function checkChecked (variable, element) {
     options[variable] = element.checked;
 }
